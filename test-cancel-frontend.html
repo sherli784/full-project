@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Cancel Order</title>
+</head>
+<body>
+    <h1>Test Cancel Order</h1>
+    <button onclick="testCancel()">Test Cancel Order</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testCancel() {
+            try {
+                console.log('Testing frontend cancel...');
+                
+                // First create an order
+                const orderData = {
+                    items: [{ productId: 'p1', size: 'S', quantity: 1 }],
+                    paymentMethod: 'COD',
+                    address: 'Test Address'
+                };
+                
+                const createResponse = await fetch('http://localhost:5000/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+                
+                const order = await createResponse.json();
+                console.log('Order created:', order._id);
+                
+                // Now cancel it
+                const cancelResponse = await fetch(`http://localhost:5000/api/orders/${order._id}/cancel`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const result = await cancelResponse.json();
+                console.log('Cancel result:', result);
+                document.getElementById('result').innerHTML = JSON.stringify(result, null, 2);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

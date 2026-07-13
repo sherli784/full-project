@@ -1,0 +1,12 @@
+{
+  "name": "pdf-generator",
+  "version": "1.0.0",
+  "description": "Simple sales report PDF generator using Puppeteer",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js sample-data.json output.pdf"
+  },
+  "dependencies": {
+    "puppeteer": "^24.39.0"
+  }
+}

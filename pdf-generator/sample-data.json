@@ -1,0 +1,17 @@
+{
+  "companyName": "Acme Apparel Pvt Ltd",
+  "companyLogo": "<img src=\"https://via.placeholder.com/80x80.png?text=Logo\" alt=\"Logo\">",
+  "reportPeriod": "24-Feb-26 to 24-Feb-26 (Daily)",
+  "generatedDateTime": "24-Feb-26 10:00",
+  "filters": "Product: All; Region: All; Channel: Online",
+  "summary": {
+    "totalSalesAmount": 20000,
+    "totalOrders": 15,
+    "totalProductsSold": 25,
+    "bestSellingProduct": "Classic White Linen Shirt"
+  },
+  "sales": [
+    {"date":"24-Feb-26","productName":"Classic White Linen Shirt","quantity":10,"unitPrice":1000,"totalAmount":10000},
+    {"date":"24-Feb-26","productName":"Slim Fit Denim Jeans","quantity":5,"unitPrice":2000,"totalAmount":10000}
+  ]
+}
