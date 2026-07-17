@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'NODE_OPTIONS="--max-old-space-size=2048" npm run build'
             }
         }
 
