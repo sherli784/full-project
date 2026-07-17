@@ -2,21 +2,29 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
-               git branch: 'main', url: 'https://github.com/sherli784/full-project.git'
+                git branch: 'main',
+                    url: 'https://github.com/sherli784/full-project.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Build started'
+                sh 'npm run build'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deployment started'
+                sh 'sudo systemctl restart nginx'
             }
         }
     }
