@@ -4,8 +4,14 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/sherli784/full-project.git'
+                deleteDir()
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/sherli784/full-project.git'
+                    ]]
+                ])
             }
         }
 
