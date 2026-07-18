@@ -2,19 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                deleteDir()
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/sherli784/full-project.git'
-                    ]]
-                ])
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -23,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'NODE_OPTIONS=--max-old-space-size=2048 npm run build'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'sudo /bin/systemctl restart nginx'
+                sh 'sudo /usr/bin/systemctl restart nginx'
             }
         }
     }
